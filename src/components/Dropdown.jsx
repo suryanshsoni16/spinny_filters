@@ -13,19 +13,19 @@ const Dropdown = () => {
   };
 
   return (
-    <div className="relative inline-block text-left ml-6">
+    <div className="relative inline-block text-left ml-8">
       <div>
         <button
           type="button"
           onClick={toggleDropdown}
-          className="inline-flex justify-center w-full px-4 py-2 rounded-xl text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex justify-center w-full p-3 rounded-3xl text-sm font-medium text-gray-900 border  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           id="options-menu"
           aria-haspopup="true"
           aria-expanded="true"
         >
           {filters?.city[0]}
           <svg
-            className="-mr-1 ml-2 h-5 w-5"
+            className="-mr-1 ml-2 h-5 w-5 mt-1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -41,7 +41,7 @@ const Dropdown = () => {
       </div>
 
       {isOpen && (
-        <div className="origin-top absolute left-1/2 transform -translate-x-1/2 mt-2 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="origin-top absolute left-1/2 z-50 transform -translate-x-1/2 mt-2 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
             role="menu"

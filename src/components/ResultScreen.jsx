@@ -2,7 +2,7 @@ import React from 'react'
 
 const ResultScreen = () => {
   return (
-    <div>ResultScreen</div>
+    <div className='mt-4'>ResultScreen</div>
   )
 }
 
