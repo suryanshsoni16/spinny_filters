@@ -1,0 +1,49 @@
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px; /* This value might need to be adjusted */
+
+  width: 20px;
+  height: 20px;
+  background: #6b21a8; /* Purple color */
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.range::-webkit-slider-thumb:hover {
+  background: #4c1d95; /* Slightly darker purple on hover */
+}
+
+.range::-webkit-slider-runnable-track {
+  height: 1px;
+  cursor: pointer;
+}
+
+.range-track {
+  top: 0.5rem; /* Adjust this value to center the track with the thumbs */
+  left: 0.5rem; /* Adjust if needed */
+  right: 0.5rem; /* Adjust if needed */
+  z-index: -1; /* Put the track behind the thumbs */
+}
+
+/* Add corresponding styles for other browsers if needed */
+
+/* Ensure the track size adjusts based on the thumb positions */
+.range-track {
+  background: #6b21a8; /* Same purple color as the thumb */
+  height: 4px; /* Match the height you want for the track */
+  border-radius: 2px;
+}
+
+/* Position the track element correctly */
+.range-track {
+  top: 50%;
+  transform: translateY(-50%);
+}
