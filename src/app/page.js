@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useContext, useEffect } from "react";
 
 export default function Home() {
-  const { filters, updateFilters, setFilters } = useContext(FilterContext);
+  const { setFilters } = useContext(FilterContext);
 
   useEffect(() => {
     setLocalStorageItem("lastAppliedFilters", {

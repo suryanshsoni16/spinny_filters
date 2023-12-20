@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import CustomCheckbox from "./CustomCheckbox";
 import { FilterContext } from "@/context/FilterStore";
 
-const AccordionItem = ({ brand, model }) => {
+export const AccordionItem = ({ brand, model }) => {
   const { filters, updateFilters } = useContext(FilterContext);
   const [isOpen, setIsOpen] = useState(false);
 
