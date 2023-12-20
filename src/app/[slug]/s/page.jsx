@@ -50,7 +50,9 @@ export default function ResultPage() {
           <TopNavbar />
         </div>
         <div className="flex bg-[#FAFAFA]">
-          <SideBar />
+          <div className="w-[30%]">
+            <SideBar />
+          </div>
           <div className="max-h-[300px] overflow-y-scroll">
             <ResultScreen />
           </div>

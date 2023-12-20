@@ -7,7 +7,7 @@ const AccordionItem = ({ brand, model }) => {
   const { filters, updateFilters } = useContext(FilterContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const isBrandChecked = filters.make?.includes(brand);
+  const isBrandChecked = filters?.make?.includes(brand);
   const checkedModels = model.reduce((acc, model) => {
     acc[model] = filters.model?.includes(model);
     return acc;
@@ -16,13 +16,13 @@ const AccordionItem = ({ brand, model }) => {
   const toggleBrandCheckbox = () => {
     if (isBrandChecked) {
       // Remove brand and all its model from filters
-      const newBrands = filters.make.filter((b) => b !== brand);
+      const newBrands = filters?.make.filter((b) => b !== brand);
       const newModels = filters.model.filter((m) => !model.includes(m));
       updateFilters("make", newBrands);
       updateFilters("model", newModels);
     } else {
       // Add brand and all its model to filters
-      const newBrands = [...filters.make, brand];
+      const newBrands = [...filters?.make, brand];
       const newModels = [
         ...filters.model,
         ...model.filter((m) => !filters.model.includes(m)),
@@ -42,8 +42,8 @@ const AccordionItem = ({ brand, model }) => {
     const allModelsSelected =
       model || []?.every((m) => updatedModels.includes(m)) || false;
     const updatedBrands = allModelsSelected
-      ? [...filters.make, brand].filter((v, i, a) => a.indexOf(v) === i) // Ensure unique make
-      : filters.make.filter((b) => b !== brand);
+      ? [...filters?.make, brand].filter((v, i, a) => a.indexOf(v) === i) // Ensure unique make
+      : filters?.make.filter((b) => b !== brand);
     updateFilters("make", updatedBrands);
   };
 
