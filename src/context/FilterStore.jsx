@@ -14,68 +14,91 @@ export const FilterProvider = ({ children }) => {
     getLocalStorageItem("lastAppliedFilters")
   );
   const updateFilters = (filterType, value) => {
-    setFilters((prevFilters) => {
-      const newFilters = {
-        ...prevFilters,
-        [filterType]: value,
-      };
-      setLocalStorageItem("lastAppliedFilters", {
-        ...getLocalStorageItem("lastAppliedFilters"),
-        [filterType]: value,
-      });
-      router.push(`/${createSlug(newFilters)}`);
-      return newFilters;
-    });
-    // setLocalStorageItem("lastAppliedFilters", {
-    //   ...getLocalStorageItem("lastAppliedFilters"),
-    //   [filterType]: value,
+    // setFilters((prevFilters) => {
+    //   const newFilters = {
+    //     ...prevFilters,
+    //     [filterType]: value,
+    //   };
+    //   setLocalStorageItem("lastAppliedFilters", {
+    //     ...getLocalStorageItem("lastAppliedFilters"),
+    //     [filterType]: value,
+    //   });
+    //   router.push(`/${createSlug(newFilters)}`);
+    //   return newFilters;
     // });
-    // router.push(`/${createSlug(getLocalStorageItem("lastAppliedFilters"))}`);
+    setLocalStorageItem("lastAppliedFilters", {
+      ...getLocalStorageItem("lastAppliedFilters"),
+      [filterType]: value,
+    });
+    router.push(`/${createSlug(getLocalStorageItem("lastAppliedFilters"))}`);
   };
 
   const removeFilter = (filterType, value) => {
-    setFilters((prevFilters) => {
-      const newFilters = { ...prevFilters };
-      if (value === undefined) {
-        delete newFilters[filterType];
-      } else {
-        newFilters[filterType] = newFilters[filterType].filter(
-          (item) => item !== value
-        );
-      }
-      setLocalStorageItem("lastAppliedFilters", {
-        ...newFilters,
-        make: [],
-        model: [],
-      });
-      router.push(`/${createSlug(newFilters)}`);
-      return { ...newFilters, make: [], model: [] };
+    // setFilters((prevFilters) => {
+    //   const newFilters = { ...prevFilters };
+    //   if (value === undefined) {
+    //     delete newFilters[filterType];
+    //   } else {
+    //     newFilters[filterType] = newFilters[filterType].filter(
+    //       (item) => item !== value
+    //     );
+    //   }
+    //   setLocalStorageItem("lastAppliedFilters", {
+    //     ...newFilters,
+    //     make: [],
+    //     model: [],
+    //   });
+    //   router.push(`/${createSlug(newFilters)}`);
+    //   return { ...newFilters, make: [], model: [] };
+    // });
+    const newFilters = { ...filters };
+    if (value === undefined) {
+      delete newFilters[filterType];
+    } else {
+      newFilters[filterType] = newFilters[filterType].filter(
+        (item) => item !== value
+      );
+    }
+    setLocalStorageItem("lastAppliedFilters", {
+      ...newFilters,
+      make: [],
+      model: [],
     });
+    router.push(`/${createSlug(newFilters)}`);
   };
   const clearAll = () => {
     const skipKeys = ["city", "category", "product_type"];
-    setFilters((prevFilters) => {
-      const retainedFilters = Object.keys(prevFilters).reduce((acc, key) => {
-        if (skipKeys.includes(key)) {
-          acc[key] = prevFilters[key];
-        }
-        return acc;
-      }, {});
+    const retainedFilters = Object.keys(filters).reduce((acc, key) => {
+      if (skipKeys.includes(key)) {
+        acc[key] = filters[key];
+      }
+      return acc;
+    }, {});
 
-      setLocalStorageItem("lastAppliedFilters", {
-        ...retainedFilters,
-        make: [],
-        model: [],
-      });
-      router.push(`/${createSlug(retainedFilters)}`);
-      return { ...retainedFilters, make: [], model: [] };
+    setLocalStorageItem("lastAppliedFilters", {
+      ...retainedFilters,
+      make: [],
+      model: [],
     });
+    router.push(`/${createSlug(retainedFilters)}`);
+    // setFilters((prevFilters) => {
+    //   const retainedFilters = Object.keys(prevFilters).reduce((acc, key) => {
+    //     if (skipKeys.includes(key)) {
+    //       acc[key] = prevFilters[key];
+    //     }
+    //     return acc;
+    //   }, {});
+
+    //   setLocalStorageItem("lastAppliedFilters", {
+    //     ...retainedFilters,
+    //     make: [],
+    //     model: [],
+    //   });
+    //   router.push(`/${createSlug(retainedFilters)}`);
+    //   return { ...retainedFilters, make: [], model: [] };
+    // });
   };
 
-  useEffect(() => {
-    const lastAppliedFilters = getLocalStorageItem("lastAppliedFilters") || {};
-    setFilters(lastAppliedFilters);
-  }, []);
   return (
     <FilterContext.Provider
       value={{ filters, updateFilters, setFilters, removeFilter, clearAll }}
