@@ -51,7 +51,9 @@ export default function ResultPage() {
         </div>
         <div className="flex bg-[#FAFAFA]">
           <SideBar />
-          <ResultScreen />
+          <div className="max-h-[300px] overflow-y-scroll">
+            <ResultScreen />
+          </div>
         </div>
       </div>
     </div>

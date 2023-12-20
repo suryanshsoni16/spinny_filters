@@ -1,35 +1,47 @@
-import React from "react";
-
-const Tag = ({ text, onClear }) => (
-  <div className="flex items-center  h-[40px] bg-purple-600 text-white text-xs font-bold px-4 py-2 rounded">
-    {text}
-    <button
-      onClick={onClear}
-      className="ml-2 bg-purple-800 hover:bg-purple-900 rounded-full p-1 focus:outline-none"
-    >
-      ×
-    </button>
-  </div>
-);
+import { FilterContext } from "@/context/FilterStore";
+import React, { useContext } from "react";
 
 const ResultScreen = () => {
-  // Function to handle clearing of all tags
-  const handleClearAll = () => {
-    console.log("Clear all tags");
+  const { filters, updateFilters, setFilters } = useContext(FilterContext);
+
+  const removeFilter = (category, value) => {
+    const updatedFilters = {
+      ...filters,
+      [category]: filters[category].filter((item) => item !== value),
+    };
+    setFilters(updatedFilters);
   };
+  const skipKeys = ["city", "category", "product_type"];
+  const filterItems = Object.entries(filters).flatMap(([key, values]) => {
+    // Skip the keys that we don't want to render
+    if (skipKeys.includes(key)) return [];
+    return values.map((value) => ({
+      key,
+      value:
+        key === "min_year"
+          ? `${value} & above`
+          : key === "max_mileage"
+          ? `${value} Kms or less`
+          : value,
+    }));
+  });
 
   return (
-    <div className="mt-4 flex space-x-2">
-      <button
-        onClick={handleClearAll}
-        className="bg-transparent h-[30px] hover:bg-purple-500 text-purple-700 font-semibold hover:text-white py-2 px-4 border border-purple-500 hover:border-transparent rounded"
-      >
-        Clear All
-      </button>
-      {[1, 1, 1, 1, 1, 1, 1, 1, 1]?.map(() => {
+    <div className="flex flex-wrap h-[40px] my-4">
+      {filterItems.map((filterItem, index) => {
         return (
-          <Tag text="Hyundai" onClear={() => console.log("Clear Hyundai")} />
-          
+          <div
+            key={index}
+            className="flex items-center text-purple-600 bg-white text-xs font-bold px-4 py-2 rounded m-2 hover:bg-purple-200 cursor-pointer"
+          >
+            {filterItem.value}{" "}
+            <button
+              onClick={() => removeFilter(filterItem.key, filterItem.value)}
+              className="ml-2 rounded-full p-1 focus:outline-none"
+            >
+              ×
+            </button>
+          </div>
         );
       })}
     </div>
