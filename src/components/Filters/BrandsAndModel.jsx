@@ -22,11 +22,11 @@ export const AccordionItem = ({ brand, model }) => {
       updateFilters("model", newModels);
     } else {
       // Add brand and all its model to filters
-      const newBrands = [...filters?.make, brand];
-      const newModels = [
-        ...filters.model,
-        ...model.filter((m) => !filters.model.includes(m)),
-      ];
+      const newBrands = filters?.make ? [...filters.make, brand] : [brand];
+      const newModels = filters.model
+        ? [...filters.model, ...model.filter((m) => !filters.model.includes(m))]
+        : model;
+
       updateFilters("make", newBrands);
       updateFilters("model", newModels);
     }
