@@ -19,7 +19,7 @@ export default function createSlug(filters) {
   sequence.forEach((key) => {
     if (filters[key]) {
       if (filters[key].length === 1) {
-        let value = filters[key][0].toString();
+        let value = filters[key]?.[0].toString();
         switch (key) {
           case "no_of_owner":
             slugParts.push("upto-" + value + "-owner");

@@ -23,7 +23,7 @@ const Dropdown = () => {
           aria-haspopup="true"
           aria-expanded="true"
         >
-          {filters?.city[0]}
+          {filters?.city?.[0]}
           <svg
             className="-mr-1 ml-2 h-5 w-5 mt-1"
             xmlns="http://www.w3.org/2000/svg"

@@ -29,7 +29,7 @@ const CommonFiltersCheckRadio = ({
         : [...selectedOptions, option];
     } else if (type === "Radio") {
       newSelectedOptions =
-        selectedOptions.length === 0 || selectedOptions[0] !== option
+        selectedOptions.length === 0 || selectedOptions?.[0] !== option
           ? [option]
           : [];
     }

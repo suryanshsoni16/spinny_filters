@@ -13,7 +13,7 @@ export default function decodeSlug(slug, filterObjectString) {
   };
   const extractNumber = (str) => {
     const match = str.match(/\d+/);
-    return match ? match[0] : null;
+    return match ? match?.[0] : null;
   };
 
   parts.forEach((part, index) => {
