@@ -1,7 +1,7 @@
 import { CITIES } from "@/constants";
 import { FilterContext } from "@/context/FilterStore";
 import React, { useContext, useState } from "react";
-const Dropdown = () => {
+const Dropdown = ({ isHomepage }) => {
   const { filters, updateFilters } = useContext(FilterContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
@@ -13,12 +13,14 @@ const Dropdown = () => {
   };
 
   return (
-    <div className="relative inline-block text-left ml-8">
+    <div className="relative inline-block text-left ml-16">
       <div>
         <button
           type="button"
           onClick={toggleDropdown}
-          className="inline-flex justify-center w-full p-3 rounded-3xl text-sm font-medium text-gray-900 border  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className={`inline-flex justify-center w-full p-3 rounded-3xl text-sm font-medium ${
+            isHomepage ? "text-white border" : "text-gray-900 border"
+          }   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           id="options-menu"
           aria-haspopup="true"
           aria-expanded="true"
