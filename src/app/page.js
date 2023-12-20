@@ -3,7 +3,7 @@
 import Dropdown from "@/components/Dropdown";
 import { PRICE_RANGE } from "@/constants";
 import { FilterContext } from "@/context/FilterStore";
-import { setLocalStorageItem } from "@/hooks/useLocalStorage";
+import { setLocalStorageItem } from "@/helper/localStorageHelper";
 import Image from "next/image";
 import { useContext, useEffect } from "react";
 
