@@ -2,10 +2,8 @@
 
 import { PRICE_RANGE } from "@/constants";
 import createSlug from "@/helper/createSlug";
-import {
-  setLocalStorageItem,
-  getLocalStorageItem,
-} from "@/hooks/useLocalStorage";
+import { getLocalStorageItem, setLocalStorageItem } from "@/helper/localStorageHelper";
+
 import { useRouter } from "next/navigation";
 import React, { useState, createContext, useEffect } from "react";
 export const FilterContext = createContext();
