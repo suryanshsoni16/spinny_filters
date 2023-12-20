@@ -9,22 +9,22 @@ import {
 import TopNavbar from "../../../components/TopNavbar";
 import SideBar from "../../../components/SideBar";
 import ResultScreen from "../../../components/ResultScreen";
-import { FilterContext } from "@/context/FilterStore";
-import { useContext, useEffect } from "react";
-import createSlug from "@/helper/createSlug";
-import decodeSlug from "@/helper/decodeSlug";
+// import { FilterContext } from "@/context/FilterStore";
+// import { useContext, useEffect } from "react";
+// import createSlug from "@/helper/createSlug";
+// import decodeSlug from "@/helper/decodeSlug";
 // Your ResultPage component
 export default function ResultPage() {
-  const { filters, updateFilters, setFilters } = useContext(FilterContext);
-  const searchParams = useSearchParams();
-  const search = searchParams.get("filterObject");
-  const params = useParams();
-  const { slug } = params;
-  console.log(
-    "xxxxxxxxx",
-    JSON.parse(decodeURIComponent(search)),
-    decodeSlug(params?.slug, JSON.parse(decodeURIComponent(search)))
-  );
+  // const { filters, updateFilters, setFilters } = useContext(FilterContext);
+  // const searchParams = useSearchParams();
+  // const search = searchParams.get("filterObject");
+  // const params = useParams();
+  // const { slug } = params;
+  // console.log(
+  //   "xxxxxxxxx",
+  //   JSON.parse(decodeURIComponent(search)),
+  //   decodeSlug(params?.slug, JSON.parse(decodeURIComponent(search)))
+  // );
 
 //  useEffect(() => {
 //    if (slug) {
